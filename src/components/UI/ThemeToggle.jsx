@@ -13,6 +13,9 @@ export default function ThemeToggle(props) {
 
   return (
     <motion.button
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      exit={{ scale: 0 }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       transition={{ duration: 0.2 }}
@@ -22,8 +25,8 @@ export default function ThemeToggle(props) {
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
-        exit={{ scale: 0 }}
         transition={{ duration: 0.2 }}
+        exit={{ scale: 0 }}
       >
         {!isDarkModeActive && <MoonIcon />}
         {isDarkModeActive && <SunIcon />}
