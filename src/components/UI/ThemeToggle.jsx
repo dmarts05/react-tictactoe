@@ -7,30 +7,33 @@ export default function ThemeToggle(props) {
 
   const toggleThemeHandler = () => {
     setIsDarkModeActive(prev => !prev);
-    console.log(document.getRootNode());
     document.documentElement.classList.toggle('dark');
+  };
+
+  const MotionMoonIcon = motion(MoonIcon);
+  const MotionSunIcon = motion(SunIcon);
+
+  const iconsMotionConfig = {
+    initial: { scale: 0 },
+    animate: { scale: 1 },
+    exit: { scale: 0 },
+    transition: { duration: 0.2 },
+  };
+
+  const buttonMotionConfig = {
+    whileHover: { scale: 1.1 },
+    whileTap: { scale: 0.9 },
+    transition: { duration: 0.2 },
   };
 
   return (
     <motion.button
-      initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
-      exit={{ scale: 0 }}
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
-      transition={{ duration: 0.2 }}
+      {...buttonMotionConfig}
       onClick={toggleThemeHandler}
       className={`w-16 rounded-full bg-black p-4 text-white dark:bg-white dark:text-black ${props.className}`}
     >
-      <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.2 }}
-        exit={{ scale: 0 }}
-      >
-        {!isDarkModeActive && <MoonIcon />}
-        {isDarkModeActive && <SunIcon />}
-      </motion.div>
+      {!isDarkModeActive && <MotionMoonIcon {...iconsMotionConfig} />}
+      {isDarkModeActive && <MotionSunIcon {...iconsMotionConfig} />}
     </motion.button>
   );
 }
