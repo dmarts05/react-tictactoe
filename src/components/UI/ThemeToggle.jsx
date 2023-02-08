@@ -1,4 +1,4 @@
-import { animate, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { MoonIcon, SunIcon } from '@heroicons/react/24/solid';
 import { useState } from 'react';
 
