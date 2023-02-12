@@ -14,18 +14,10 @@ export default function Title() {
   };
 
   const item = {
-    hidden: { x: -500, scale: 0 },
+    hidden: { scale: 0, rotate: 180 },
     visible: {
-      x: 0,
       scale: 1,
-    },
-  };
-
-  const item2 = {
-    hidden: { x: 500, scale: 0 },
-    visible: {
-      x: 0,
-      scale: 1,
+      rotate: 0,
     },
   };
 
@@ -37,10 +29,8 @@ export default function Title() {
       aria-label='Tic Tac Toe'
       className='flex w-full select-none flex-col items-center justify-center gap-3 self-start text-8xl font-bold tracking-widest sm:flex-row'
     >
-      <motion.span variants={item} className=''>
-        Tic
-      </motion.span>
-      <motion.span variants={item2}>Tac</motion.span>
+      <motion.span variants={item}>Tic</motion.span>
+      <motion.span variants={item}>Tac</motion.span>
       <motion.span variants={item}>Toe</motion.span>
     </motion.h1>
   );

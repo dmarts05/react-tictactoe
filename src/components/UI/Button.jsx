@@ -21,7 +21,7 @@ export default function Button(props) {
       <motion.button
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className={`w-fit rounded-full border-2 py-1 px-4 transition-colors duration-300 ${classes}`}
+        className={`w-fit select-none rounded-full border-2 py-1 px-4 transition-colors duration-300 ${classes}`}
       >
         {props.children}
       </motion.button>
