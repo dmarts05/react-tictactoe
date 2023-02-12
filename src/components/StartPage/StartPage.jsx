@@ -14,7 +14,7 @@ export default function StartPage() {
     animate: { opacity: [0, 1, 0], scale: [0, 2, 0] },
     transition: {
       type: 'spring',
-      duration: 1.5,
+      duration: 1.8,
     },
   };
 
