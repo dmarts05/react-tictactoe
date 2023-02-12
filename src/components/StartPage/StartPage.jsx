@@ -37,7 +37,7 @@ export default function StartPage() {
       </Button>
       <motion.div
         {...circleAnimation}
-        className='fixed -z-10 h-[750px] w-[750px] select-none rounded-full border-4 border-white'
+        className='fixed -z-10 h-[750px] w-[750px] select-none rounded-full border-4 border-black dark:border-white'
       ></motion.div>
     </header>
   );
