@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
+import Logo from './Logo';
 import Title from './Title';
 import Button from '../UI/Button';
 import Modal from '../UI/Modal';
@@ -48,6 +49,7 @@ export default function StartPage() {
 
   return (
     <header className='flex h-screen w-screen flex-col items-center justify-center gap-6 overflow-hidden transition-all'>
+      <Logo />
       <Title />
       <Button
         onClick={openModalHandler}
@@ -58,7 +60,7 @@ export default function StartPage() {
       </Button>
       <motion.div
         {...circleAnimation}
-        className='fixed -z-10 h-[750px] w-[750px] select-none rounded-full border-4 border-black dark:border-white'
+        className='fixed -z-10 h-[750px] w-[750px] select-none rounded-full border-4 border-zinc-900 dark:border-white'
       ></motion.div>
       <AnimatePresence initial={false} mode='wait' onExitComplete={() => null}>
         {showStartGameModal && (

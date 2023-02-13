@@ -27,7 +27,7 @@ export default function Title() {
       initial='hidden'
       animate='visible'
       aria-label='Tic Tac Toe'
-      className='flex w-full select-none flex-col items-center justify-center gap-3 self-start text-8xl font-bold tracking-widest sm:flex-row'
+      className='flex w-full select-none items-center justify-center gap-3 self-start text-5xl font-bold tracking-widest sm:text-8xl'
     >
       <motion.span variants={item}>Tic</motion.span>
       <motion.span variants={item}>Tac</motion.span>

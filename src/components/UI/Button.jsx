@@ -6,11 +6,11 @@ export default function Button(props) {
   switch (props.styleType) {
     case 'primary':
       classes =
-        'border-black bg-black text-white hover:text-black hover:bg-white dark:border-white dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white';
+        'border-zinc-900 bg-zinc-900 text-white hover:text-zinc-900 hover:bg-white dark:border-white dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-900 dark:hover:text-white';
       break;
     case 'secondary':
       classes =
-        'border-black bg-white text-black hover:bg-black hover:text-white dark:border-white dark:bg-black dark:text-white dark:hover:bg-white dark:hover:text-black';
+        'border-zinc-900 bg-white text-zinc-900 hover:bg-zinc-900 hover:text-white dark:border-white dark:bg-zinc-900 dark:text-white dark:hover:bg-white dark:hover:text-zinc-900';
       break;
     default:
       break;
