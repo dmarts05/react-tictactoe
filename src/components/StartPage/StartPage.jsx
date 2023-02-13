@@ -46,7 +46,11 @@ export default function StartPage() {
   };
 
   return (
-    <header className='realtive flex h-screen w-screen flex-col items-center justify-center gap-6 overflow-hidden'>
+    <header
+      className={`flex h-screen w-screen flex-col items-center justify-center gap-6 overflow-hidden filter transition-all ${
+        showStartGameModal && 'blur-sm'
+      }`}
+    >
       <Title />
       <Button
         onClick={openModalHandler}

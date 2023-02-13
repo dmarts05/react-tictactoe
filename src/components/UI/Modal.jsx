@@ -18,10 +18,19 @@ const ModalOverlay = props => {
   return (
     <motion.div
       key='modal'
-      initial={{ y: -1000 }}
+      drag='y'
+      dragConstraints={{ top: 0, bottom: 0 }}
+      dragMomentum={false}
+      dragElastic={0.8}
+      onDragEnd={(event, info) => {
+        if (info.offset.y > 350) {
+          props.onCloseModal();
+        }
+      }}
+      initial={{ y: 1000 }}
       animate={{ y: 0 }}
       exit={{ y: 1000 }}
-      className='fixed inset-0 z-20 my-16 mx-8 rounded-xl border-2 border-black bg-white text-black dark:border-white dark:bg-black dark:text-white ss:mx-16'
+      className='fixed bottom-0 right-0 left-0 z-20 m-auto mt-16 h-5/6 rounded-xl rounded-b-none border-2 border-b-0 border-black bg-white text-black active:cursor-grabbing dark:border-white dark:bg-black dark:text-white sm:w-2/3'
     >
       {props.modalContent}
     </motion.div>
@@ -32,7 +41,10 @@ export default function Modal(props) {
   return (
     <>
       {createPortal(
-        <ModalOverlay modalContent={props.children} />,
+        <ModalOverlay
+          onCloseModal={props.onCloseModal}
+          modalContent={props.children}
+        />,
         document.getElementById('overlay-root')
       )}
       {createPortal(
