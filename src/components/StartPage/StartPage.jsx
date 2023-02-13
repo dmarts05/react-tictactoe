@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Title from './Title';
 import Button from '../UI/Button';
 import Modal from '../UI/Modal';
+import StartGameForm from './StartGameForm';
 
 const btnAnimation = {
   initial: { scale: 0 },
@@ -46,11 +47,7 @@ export default function StartPage() {
   };
 
   return (
-    <header
-      className={`flex h-screen w-screen flex-col items-center justify-center gap-6 overflow-hidden filter transition-all ${
-        showStartGameModal && 'blur-sm'
-      }`}
-    >
+    <header className='flex h-screen w-screen flex-col items-center justify-center gap-6 overflow-hidden transition-all'>
       <Title />
       <Button
         onClick={openModalHandler}
@@ -64,7 +61,11 @@ export default function StartPage() {
         className='fixed -z-10 h-[750px] w-[750px] select-none rounded-full border-4 border-black dark:border-white'
       ></motion.div>
       <AnimatePresence initial={false} mode='wait' onExitComplete={() => null}>
-        {showStartGameModal && <Modal onCloseModal={closeModalHandler}></Modal>}
+        {showStartGameModal && (
+          <Modal onCloseModal={closeModalHandler}>
+            <StartGameForm />
+          </Modal>
+        )}
       </AnimatePresence>
     </header>
   );
