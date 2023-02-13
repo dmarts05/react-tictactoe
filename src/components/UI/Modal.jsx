@@ -23,7 +23,7 @@ const ModalOverlay = props => {
       dragMomentum={false}
       dragElastic={0.8}
       onDragEnd={(event, info) => {
-        if (info.offset.y > 350) {
+        if (info.offset.y > 200) {
           props.onCloseModal();
         }
       }}
