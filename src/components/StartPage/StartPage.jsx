@@ -51,13 +51,16 @@ export default function StartPage() {
     <header className='flex h-screen w-screen flex-col items-center justify-center gap-6 overflow-hidden transition-all'>
       <Logo />
       <Title />
-      <Button
-        onClick={openModalHandler}
-        animation={btnAnimation}
-        styleType='secondary'
-      >
-        {btnSvg}
-      </Button>
+      <motion.div {...btnAnimation}>
+        <Button
+          onClick={openModalHandler}
+          animation={btnAnimation}
+          styleType='secondary'
+        >
+          {btnSvg}
+        </Button>
+      </motion.div>
+
       <motion.div
         {...circleAnimation}
         className='fixed -z-10 h-[750px] w-[750px] select-none rounded-full border-4 border-zinc-900 dark:border-white'
@@ -65,7 +68,7 @@ export default function StartPage() {
       <AnimatePresence initial={false} mode='wait' onExitComplete={() => null}>
         {showStartGameModal && (
           <Modal onCloseModal={closeModalHandler}>
-            <StartGameForm />
+            <StartGameForm onCloseModal={closeModalHandler} />
           </Modal>
         )}
       </AnimatePresence>

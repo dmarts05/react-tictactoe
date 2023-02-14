@@ -30,7 +30,7 @@ const ModalOverlay = props => {
       initial={{ y: 1000 }}
       animate={{ y: 0 }}
       exit={{ y: 1000 }}
-      className='fixed bottom-0 right-0 left-0 z-20 m-auto mt-16 h-5/6 rounded-xl rounded-b-none border-2 border-b-0 border-zinc-900 bg-white p-6 text-zinc-900 active:cursor-grabbing dark:border-white dark:bg-zinc-900 dark:text-white sm:w-2/3'
+      className='fixed bottom-0 right-0 left-0 z-20 m-auto mt-16 h-5/6 rounded-xl rounded-b-none border-2 border-b-0 border-zinc-900 bg-white py-6 px-12 text-zinc-900 active:cursor-grabbing dark:border-white dark:bg-zinc-900 dark:text-white sm:w-2/3'
     >
       {props.modalContent}
     </motion.div>
