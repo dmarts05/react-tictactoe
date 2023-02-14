@@ -22,7 +22,7 @@ export default function FormRadioGroup(props) {
             name={props.id}
             id={option.id}
             value={option.id}
-            className='h-4 w-4 cursor-pointer border-zinc-300 bg-zinc-100 text-zinc-800 transition-all  duration-200 focus:ring-2 focus:ring-zinc-800'
+            className='h-4 w-4 cursor-pointer border-2 border-zinc-300 bg-zinc-100 text-zinc-800 transition-all  duration-200 focus:ring-2 focus:ring-zinc-800 dark:border-zinc-800 dark:bg-white'
           />
           <label
             htmlFor={option.id}
