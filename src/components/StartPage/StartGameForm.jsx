@@ -13,7 +13,7 @@ export default function StartGameForm({ onCloseModal }) {
     watch,
     formState: { errors },
   } = useForm({
-    mode: 'onTouched',
+    mode: 'onChange',
     defaultValues: {
       gameMode: 'ai',
       difficulty: 'easy',
