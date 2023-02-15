@@ -66,35 +66,27 @@ export default function StartGameForm({ onCloseModal }) {
           name='gameMode'
           legend='Game Mode'
           options={[
-            { id: 'ai', label: 'AI' },
-            { id: 'pvp', label: 'PVP' },
+            { name: 'ai', label: 'AI' },
+            { name: 'pvp', label: 'PVP' },
           ]}
           className='col-span-full grid grid-cols-2 gap-3'
           errors={errors}
           register={register}
-          validationSchema={
-            {
-              // required: 'Game mode is required!',
-            }
-          }
+          validationSchema={{}}
         />
         <FormRadioGroup
           name='difficulty'
           legend='Difficulty'
           options={[
-            { id: 'easy', label: 'Easy' },
-            { id: 'normal', label: 'Normal' },
-            { id: 'hard', label: 'Hard' },
-            { id: 'impossible', label: 'Impossible' },
+            { name: 'easy', label: 'Easy' },
+            { name: 'normal', label: 'Normal' },
+            { name: 'hard', label: 'Hard' },
+            { name: 'impossible', label: 'Impossible' },
           ]}
           className='col-span-full grid grid-cols-2 gap-3'
           errors={errors}
           register={register}
-          validationSchema={
-            {
-              // required: 'Difficulty mode is required!',
-            }
-          }
+          validationSchema={{}}
         />
 
         <Button

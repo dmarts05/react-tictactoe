@@ -10,23 +10,19 @@ export default function FormRadioGroup({
   validationSchema,
 }) {
   return (
-    <fieldset
-      id={name}
-      className={extraClasses}
-      {...register(name, validationSchema)}
-    >
+    <fieldset id={name} className={extraClasses}>
       <legend className='w-fit pb-3 font-semibold uppercase'>{legend}</legend>
       {options.map(option => (
         <FormRadioButton
-          key={option.id}
-          groupId={name}
-          id={option.id}
+          groupName={name}
+          name={option.name}
           label={option.label}
+          key={option.name}
+          register={register}
+          errors={errors}
+          validationSchema={validationSchema}
         />
       ))}
-      {errors && errors[name]?.type === 'required' && (
-        <span className='error'>{errors[name]?.message}</span>
-      )}
     </fieldset>
   );
 }
