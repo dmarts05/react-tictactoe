@@ -3,22 +3,30 @@ import { create } from 'zustand';
 const INITIAL_BOARD = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
 
 const gameStore = set => ({
-  isGameInProgress: false,
   board: INITIAL_BOARD,
+  gamePreferences: {
+    difficulty: '',
+    gameMode: '',
+    playerOneName: '',
+    playerTwoName: '',
+  },
+  isGameInProgress: false,
   isEndGame: {
     hasPlayerOneWon: false,
     hasPlayerTwoWon: false,
     isTie: false,
   },
-  // Temp functions for testing
-  updateBoard: newBoard => {
+  setBoard: newBoard => {
     set(state => ({
       ...state,
       board: [...newBoard],
     }));
   },
-  toggleIsGameInProgress: () => {
-    set(state => ({ ...state, isGameInProgress: !state.isGameInProgress }));
+  setGamePreferences: preferences => {
+    set(state => ({ ...state, gamePreferences: preferences }));
+  },
+  setIsGameInProgress: isInProgress => {
+    set(state => ({ ...state, isGameInProgress: isInProgress }));
   },
   // Create game functions here
 });

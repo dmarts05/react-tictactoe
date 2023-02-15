@@ -33,17 +33,17 @@ export default function StartGameForm({ onCloseModal }) {
     }
   }, [setValue, gameMode]);
 
-  const toggleIsGameInProgress = useGameStore(
-    state => state.toggleIsGameInProgress
-  );
+  const setIsGameInProgress = useGameStore(state => state.setIsGameInProgress);
+
+  const setGamePreferences = useGameStore(state => state.setGamePreferences);
 
   const onSubmit = data => {
-    console.log(data);
+    setGamePreferences(data);
     onCloseModal();
 
     // TODO: Use AnimatePresence to avoid this
     setTimeout(() => {
-      toggleIsGameInProgress();
+      setIsGameInProgress(true);
     }, 300);
   };
 
