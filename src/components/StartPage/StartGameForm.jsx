@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
 import FormBasicInput from '../UI/FormBasicInput';
 import FormRadioGroup from '../UI/FormRadioGroup';
 import Button from '../UI/Button';
@@ -7,6 +8,7 @@ export default function StartGameForm({ onCloseModal }) {
   const {
     register,
     handleSubmit,
+    setFocus,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -15,13 +17,17 @@ export default function StartGameForm({ onCloseModal }) {
     },
   });
 
+  useEffect(() => {
+    setFocus('playerOneName');
+  }, [setFocus]);
+
   const onSubmit = data => {
     console.log(data);
   };
 
   return (
     <div className='flex flex-col'>
-      <h2 className='mb-3 border-b-2 border-zinc-800 pb-6 text-center text-2xl font-semibold uppercase dark:border-white'>
+      <h2 className='mb-6 border-b-2 border-zinc-800 pb-6 text-center text-2xl font-semibold uppercase dark:border-white'>
         Game Options
       </h2>
       <form
@@ -70,9 +76,7 @@ export default function StartGameForm({ onCloseModal }) {
             { name: 'pvp', label: 'PVP' },
           ]}
           className='col-span-full grid grid-cols-2 gap-3'
-          errors={errors}
           register={register}
-          validationSchema={{}}
         />
         <FormRadioGroup
           name='difficulty'
@@ -84,9 +88,7 @@ export default function StartGameForm({ onCloseModal }) {
             { name: 'impossible', label: 'Impossible' },
           ]}
           className='col-span-full grid grid-cols-2 gap-3'
-          errors={errors}
           register={register}
-          validationSchema={{}}
         />
 
         <Button
