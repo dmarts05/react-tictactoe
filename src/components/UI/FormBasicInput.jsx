@@ -1,18 +1,28 @@
-export default function FormBasicInput(props) {
+export default function FormBasicInput({
+  name,
+  label,
+  placeholder,
+  register,
+  errors,
+  type,
+  validationSchema,
+}) {
   return (
     <>
-      <label htmlFor={props.name} className='w-fit font-semibold uppercase'>
-        {props.label}
+      <label htmlFor={name} className='w-fit font-semibold uppercase'>
+        {label}
       </label>
       <input
-        {...props.register(props.regName)}
-        type={props.type}
-        name={props.name}
-        id={props.id}
-        placeholder={props.placeholder}
+        type={type}
+        name={name}
+        id={name}
+        placeholder={placeholder}
         className='rounded-md border-2 border-zinc-300 p-1.5 text-sm font-medium text-zinc-800 transition-colors duration-200 hover:border-zinc-800 focus:border-transparent focus:border-zinc-800 focus:ring-0 dark:border-zinc-800 dark:hover:border-zinc-300'
+        {...register(name, validationSchema)}
       />
-      {/* {props.error && <span>{props.error}</span>} */}
+      {errors && errors[name]?.type === 'required' && (
+        <span className='error'>{errors[name]?.message}</span>
+      )}
     </>
   );
 }

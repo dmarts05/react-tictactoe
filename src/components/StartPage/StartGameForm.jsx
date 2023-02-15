@@ -3,8 +3,17 @@ import FormBasicInput from '../UI/FormBasicInput';
 import FormRadioGroup from '../UI/FormRadioGroup';
 import Button from '../UI/Button';
 
-export default function StartGameForm(props) {
-  const { register, handleSubmit, reset } = useForm();
+export default function StartGameForm({ onCloseModal }) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      gameMode: 'ai',
+      difficulty: 'easy',
+    },
+  });
 
   const onSubmit = data => {
     console.log(data);
@@ -21,43 +30,56 @@ export default function StartGameForm(props) {
       >
         <p className='flex flex-col gap-3'>
           <FormBasicInput
-            register={register}
-            regName='player1Name'
-            id='player-1-name'
             type='text'
-            name='player-1-name'
+            name='playerOneName'
             label='Player 1'
             placeholder='Name'
-            error='Error'
+            errors={errors}
+            register={register}
+            validationSchema={{
+              required: 'Player 1 name is required!',
+              minLength: {
+                value: 3,
+                message: 'Please enter a minimum of 3 characters',
+              },
+            }}
           />
         </p>
         <p className='flex flex-col gap-3'>
           <FormBasicInput
-            register={register}
-            regName='player2Name'
-            id='player-2-name'
             type='text'
-            name='player-2-name'
+            name='playerTwoName'
             label='Player 2'
             placeholder='Name'
-            error='Error'
+            errors={errors}
+            register={register}
+            validationSchema={{
+              required: 'Player 2 name is required!',
+              minLength: {
+                value: 3,
+                message: 'Please enter a minimum of 3 characters',
+              },
+            }}
           />
         </p>
         <FormRadioGroup
-          register={register}
-          regName='gameMode'
-          id='game-mode'
+          name='gameMode'
           legend='Game Mode'
           options={[
             { id: 'ai', label: 'AI' },
             { id: 'pvp', label: 'PVP' },
           ]}
           className='col-span-full grid grid-cols-2 gap-3'
+          errors={errors}
+          register={register}
+          validationSchema={
+            {
+              // required: 'Game mode is required!',
+            }
+          }
         />
         <FormRadioGroup
-          register={register}
-          regName='difficulty'
-          id='difficulty'
+          name='difficulty'
           legend='Difficulty'
           options={[
             { id: 'easy', label: 'Easy' },
@@ -66,15 +88,20 @@ export default function StartGameForm(props) {
             { id: 'impossible', label: 'Impossible' },
           ]}
           className='col-span-full grid grid-cols-2 gap-3'
+          errors={errors}
+          register={register}
+          validationSchema={
+            {
+              // required: 'Difficulty mode is required!',
+            }
+          }
         />
+
         <Button
           type='button'
           styleType='secondary'
           className='m-auto w-2/3'
-          onClick={() => {
-            reset();
-            props.onCloseModal();
-          }}
+          onClick={onCloseModal}
         >
           Cancel
         </Button>
