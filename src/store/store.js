@@ -10,12 +10,15 @@ const gameStore = set => ({
     hasPlayerTwoWon: false,
     isTie: false,
   },
-  // Temp function for testing
+  // Temp functions for testing
   updateBoard: newBoard => {
     set(state => ({
       ...state,
       board: [...newBoard],
     }));
+  },
+  toggleIsGameInProgress: () => {
+    set(state => ({ ...state, isGameInProgress: !state.isGameInProgress }));
   },
   // Create game functions here
 });

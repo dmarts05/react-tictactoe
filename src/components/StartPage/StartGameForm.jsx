@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
+import useGameStore from '../../store/store';
 import FormBasicInput from '../UI/FormBasicInput';
 import FormRadioGroup from '../UI/FormRadioGroup';
 import Button from '../UI/Button';
@@ -32,8 +33,18 @@ export default function StartGameForm({ onCloseModal }) {
     }
   }, [setValue, gameMode]);
 
+  const toggleIsGameInProgress = useGameStore(
+    state => state.toggleIsGameInProgress
+  );
+
   const onSubmit = data => {
     console.log(data);
+    onCloseModal();
+
+    // TODO: Use AnimatePresence to avoid this
+    setTimeout(() => {
+      toggleIsGameInProgress();
+    }, 300);
   };
 
   return (
