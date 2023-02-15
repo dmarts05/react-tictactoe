@@ -8,7 +8,6 @@ export default function StartGameForm({ onCloseModal }) {
   const {
     register,
     handleSubmit,
-    setFocus,
     setValue,
     watch,
     formState: { errors },
@@ -32,10 +31,6 @@ export default function StartGameForm({ onCloseModal }) {
       setValue('difficulty', undefined);
     }
   }, [setValue, gameMode]);
-
-  useEffect(() => {
-    setFocus('playerOneName');
-  }, [setFocus]);
 
   const onSubmit = data => {
     console.log(data);
