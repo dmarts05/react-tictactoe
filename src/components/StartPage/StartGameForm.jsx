@@ -9,13 +9,29 @@ export default function StartGameForm({ onCloseModal }) {
     register,
     handleSubmit,
     setFocus,
+    setValue,
+    watch,
     formState: { errors },
   } = useForm({
+    mode: 'onTouched',
     defaultValues: {
       gameMode: 'ai',
       difficulty: 'easy',
     },
   });
+
+  const gameMode = watch('gameMode');
+  const difficulty = watch('difficulty');
+
+  useEffect(() => {
+    if (gameMode === 'ai') {
+      setValue('playerTwoName', 'AI', { shouldValidate: true });
+      setValue('difficulty', 'easy');
+    } else {
+      setValue('playerTwoName', '', { shouldValidate: true });
+      setValue('difficulty', undefined);
+    }
+  }, [setValue, gameMode]);
 
   useEffect(() => {
     setFocus('playerOneName');
@@ -44,9 +60,18 @@ export default function StartGameForm({ onCloseModal }) {
             register={register}
             validationSchema={{
               required: 'Player 1 name is required!',
+              pattern: {
+                value: /^[^\s]+(?:$|.*[^\s]+$)/,
+                message:
+                  'Entered value cannot start/end or contain only white spacing',
+              },
               minLength: {
-                value: 3,
-                message: 'Please enter a minimum of 3 characters',
+                value: 2,
+                message: 'Enter a minimum of 2 characters',
+              },
+              maxLength: {
+                value: 16,
+                message: 'Enter no more than 16 characters',
               },
             }}
           />
@@ -57,13 +82,23 @@ export default function StartGameForm({ onCloseModal }) {
             name='playerTwoName'
             label='Player 2'
             placeholder='Name'
+            disabled={gameMode === 'ai'}
             errors={errors}
             register={register}
             validationSchema={{
               required: 'Player 2 name is required!',
+              pattern: {
+                value: /^[^\s]+(?:$|.*[^\s]+$)/,
+                message:
+                  'Entered value cannot start/end or contain only white spacing',
+              },
               minLength: {
-                value: 3,
-                message: 'Please enter a minimum of 3 characters',
+                value: 2,
+                message: 'Enter a minimum of 2 characters',
+              },
+              maxLength: {
+                value: 16,
+                message: 'Enter no more than 16 characters',
               },
             }}
           />
@@ -71,6 +106,7 @@ export default function StartGameForm({ onCloseModal }) {
         <FormRadioGroup
           name='gameMode'
           legend='Game Mode'
+          selected={gameMode}
           options={[
             { name: 'ai', label: 'AI' },
             { name: 'pvp', label: 'PVP' },
@@ -81,25 +117,27 @@ export default function StartGameForm({ onCloseModal }) {
         <FormRadioGroup
           name='difficulty'
           legend='Difficulty'
+          selected={difficulty}
+          disabled={gameMode === 'pvp'}
           options={[
             { name: 'easy', label: 'Easy' },
             { name: 'normal', label: 'Normal' },
             { name: 'hard', label: 'Hard' },
             { name: 'impossible', label: 'Impossible' },
           ]}
-          className='col-span-full grid grid-cols-2 gap-3'
+          className='disabled: col-span-full grid grid-cols-2 gap-3 disabled:cursor-not-allowed disabled:text-zinc-300'
           register={register}
         />
 
         <Button
           type='button'
           styleType='secondary'
-          className='m-auto w-2/3'
+          className='m-auto w-28'
           onClick={onCloseModal}
         >
           Cancel
         </Button>
-        <Button type='submit' styleType='primary' className='m-auto w-2/3'>
+        <Button type='submit' styleType='primary' className='m-auto w-28'>
           GO!
         </Button>
       </form>

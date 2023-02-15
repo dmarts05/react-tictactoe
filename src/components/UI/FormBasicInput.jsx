@@ -5,7 +5,7 @@ const warningSvg = (
     xmlns='http://www.w3.org/2000/svg'
     viewBox='0 0 24 24'
     fill='currentColor'
-    className='h-6 w-6'
+    className='h-5 w-5'
   >
     <path
       fillRule='evenodd'
@@ -19,6 +19,7 @@ export default function FormBasicInput({
   name,
   label,
   placeholder,
+  disabled = false,
   register,
   errors,
   type,
@@ -34,10 +35,15 @@ export default function FormBasicInput({
         name={name}
         id={name}
         placeholder={placeholder}
-        className='rounded-md border-2 border-zinc-300 p-1.5 text-sm font-medium text-zinc-800 transition-colors duration-200 hover:border-zinc-800 focus:border-transparent focus:border-zinc-800 focus:ring-0 dark:border-zinc-800 dark:hover:border-zinc-300'
+        disabled={disabled}
+        className={`rounded-md border-2 border-zinc-300 p-1.5 text-sm font-medium text-zinc-800 transition-colors duration-200 hover:border-zinc-800 focus:border-transparent focus:border-zinc-800 focus:ring-0 disabled:cursor-not-allowed disabled:text-zinc-300 disabled:hover:border-zinc-300 dark:border-zinc-800 dark:hover:border-zinc-300 ${
+          errors &&
+          errors[name] &&
+          'border-red-600 text-red-600 dark:border-red-600 dark:text-red-600'
+        }`}
         {...register(name, validationSchema)}
       />
-      {errors && errors[name]?.type === 'required' && (
+      {errors && errors[name] && (
         <motion.span
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
