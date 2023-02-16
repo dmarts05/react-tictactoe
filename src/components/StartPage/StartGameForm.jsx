@@ -60,7 +60,7 @@ export default function StartGameForm({ onCloseModal }) {
           <FormBasicInput
             type='text'
             name='playerOneName'
-            label='Player 1'
+            label='Player 1 - O'
             placeholder='Name'
             errors={errors}
             register={register}
@@ -86,7 +86,7 @@ export default function StartGameForm({ onCloseModal }) {
           <FormBasicInput
             type='text'
             name='playerTwoName'
-            label='Player 2'
+            label='Player 2 - X'
             placeholder='Name'
             disabled={gameMode === 'ai'}
             errors={errors}
