@@ -4,6 +4,7 @@ const INITIAL_BOARD = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
 
 const gameStore = set => ({
   board: INITIAL_BOARD,
+  currentTurn: 'O',
   gamePreferences: {
     difficulty: '',
     gameMode: '',
@@ -27,6 +28,9 @@ const gameStore = set => ({
   },
   setIsGameInProgress: isInProgress => {
     set(state => ({ ...state, isGameInProgress: isInProgress }));
+  },
+  setCurrentTurn: turn => {
+    set(state => ({ ...state, currentTurn: turn }));
   },
   // Create game functions here
 });

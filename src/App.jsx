@@ -6,7 +6,7 @@ export default function App() {
   const isGameInProgress = useGameStore(state => state.isGameInProgress);
 
   return (
-    <div className='grid place-content-center'>
+    <div className='grid h-screen place-content-center'>
       {!isGameInProgress && <StartPage />}
       {isGameInProgress && <GamePage />}
     </div>
