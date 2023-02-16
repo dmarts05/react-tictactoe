@@ -8,7 +8,7 @@ export default function Board() {
   return (
     <div className='grid grid-cols-3 gap-3'>
       {board.map((cell, index) => (
-        <Cell key={index} content={cell} />
+        <Cell key={index} index={index} content={cell} />
       ))}
     </div>
   );

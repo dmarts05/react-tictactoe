@@ -32,7 +32,9 @@ const gameStore = set => ({
   setCurrentTurn: turn => {
     set(state => ({ ...state, currentTurn: turn }));
   },
-  // Create game functions here
+  setIsEndGame: isEnd => {
+    set(state => ({ ...state, isEndGame: isEnd }));
+  },
 });
 
 const useGameStore = create(gameStore);
