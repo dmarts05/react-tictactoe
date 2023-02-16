@@ -1,5 +1,8 @@
+import { motion } from 'framer-motion';
 import useGameStore from '../../store/store';
 import getIsEndGame from '../../logic/getIsEndGame';
+
+// TODO implement variants so animations work properly
 
 export default function Cell({ index, content }) {
   const board = useGameStore(state => state.board);
@@ -36,11 +39,18 @@ export default function Cell({ index, content }) {
   };
 
   return (
-    <div
+    <motion.div
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      exit={{ scale: 0 }}
+      whileHover={{ scale: 1.1 }}
+      whileFocus={{ scale: 0.9 }}
       onClick={performMoveHandler}
       className='grid h-24 w-24 cursor-pointer select-none place-content-center rounded-2xl border-4 border-white text-5xl font-medium'
     >
-      {content}
-    </div>
+      <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }}>
+        {content}
+      </motion.span>
+    </motion.div>
   );
 }
