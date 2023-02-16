@@ -46,7 +46,7 @@ export default function Cell({ index, content }) {
       whileHover={{ scale: 1.1 }}
       whileFocus={{ scale: 0.9 }}
       onClick={performMoveHandler}
-      className='grid h-24 w-24 cursor-pointer select-none place-content-center rounded-2xl border-4 border-white text-5xl font-medium'
+      className='grid h-24 w-24 cursor-pointer select-none place-content-center rounded-2xl border-4 border-zinc-800 text-5xl font-medium dark:border-white'
     >
       <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }}>
         {content}
