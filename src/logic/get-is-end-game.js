@@ -30,7 +30,7 @@ const getIsEndGame = board => {
       // Win
       isEndGame.winningCombo = combo;
       isEndGame[
-        board[0] === 'O' ? 'hasPlayerOneWon' : 'hasPlayerTwoWon'
+        board[firstIndex] === 'O' ? 'hasPlayerOneWon' : 'hasPlayerTwoWon'
       ] = true;
     }
   });

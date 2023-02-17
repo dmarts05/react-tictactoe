@@ -1,61 +1,32 @@
 import { motion } from 'framer-motion';
-import useGameStore from '../../store/store';
-import getIsEndGame from '../../logic/get-is-end-game';
 
-// TODO implement variants so animations work properly
-
-export default function Cell({ index, content, variants }) {
-  const board = useGameStore(state => state.board);
-  const currentTurn = useGameStore(state => state.currentTurn);
-  const isEndGame = useGameStore(state => state.isEndGame);
-  const gamePreferences = useGameStore(state => state.gamePreferences);
-  const setBoard = useGameStore(state => state.setBoard);
-  const setCurrentTurn = useGameStore(state => state.setCurrentTurn);
-  const setIsEndGame = useGameStore(state => state.setIsEndGame);
-
+export default function Cell({
+  index,
+  content,
+  variants,
+  isAiTurn,
+  isCellWinningCombo,
+  isTie,
+  onPerformPlayerMove,
+  hasGameEnded,
+}) {
   const isCellUsed = content !== ' ';
-
-  const isAiTurn = gamePreferences.gameMode === 'ai' && currentTurn === 'X';
-
-  const isCellWinningCombo = isEndGame.winningCombo.includes(index);
-
-  const hasGameEnded = () => {
-    for (const key in isEndGame) {
-      if (key !== 'winningCombo' && isEndGame[key]) {
-        return true;
-      }
-    }
-
-    return false;
-  };
-
-  const performMoveHandler = () => {
-    if (isCellUsed) {
-      return;
-    } else if (isAiTurn) {
-      return;
-    } else if (hasGameEnded()) {
-      return;
-    }
-
-    const newBoard = [...board];
-    newBoard[index] = currentTurn;
-    setCurrentTurn(currentTurn === 'O' ? 'X' : 'O');
-    setBoard(newBoard);
-    setIsEndGame(getIsEndGame(newBoard));
-  };
 
   return (
     <motion.div variants={variants}>
       <motion.div
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        onClick={performMoveHandler}
+        onClick={() => {
+          if (!isCellUsed && !isAiTurn && !hasGameEnded())
+            onPerformPlayerMove(index);
+        }}
         className={`grid h-24 w-24 cursor-pointer select-none place-content-center rounded-2xl border-4 border-zinc-800 transition-colors duration-200 dark:border-white ${
           (hasGameEnded() || isAiTurn) && 'cursor-not-allowed'
-        } ${isCellWinningCombo && 'border-yellow-400 dark:border-yellow-400'} ${
-          isEndGame.isTie && 'border-blue-400 dark:border-blue-400'
-        }`}
+        } ${
+          isCellWinningCombo(index) &&
+          'border-yellow-400 dark:border-yellow-400'
+        } ${isTie && 'border-blue-400 dark:border-blue-400'}`}
       >
         <motion.p
           key={content}
@@ -63,8 +34,8 @@ export default function Cell({ index, content, variants }) {
           animate={{ scale: 1 }}
           exit={{ scale: 0 }}
           className={`text-5xl font-medium text-zinc-800 dark:text-white ${
-            isCellWinningCombo && 'text-yellow-400 dark:text-yellow-400'
-          } ${isEndGame.isTie && 'text-blue-400 dark:text-blue-400'}`}
+            isCellWinningCombo(index) && 'text-yellow-400 dark:text-yellow-400'
+          } ${isTie && 'text-blue-400 dark:text-blue-400'}`}
         >
           {content}
         </motion.p>
