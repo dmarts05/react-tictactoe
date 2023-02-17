@@ -45,7 +45,7 @@ export default function GameStatus() {
         key={content}
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
-        className='text-3xl font-medium'
+        className='text-3xl font-medium sm:text-5xl'
       >
         {content}
       </motion.p>

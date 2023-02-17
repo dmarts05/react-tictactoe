@@ -13,10 +13,18 @@ export default function GameControls() {
       transition={{ delay: 1.5 }}
       className='flex items-center justify-center gap-6'
     >
-      <Button styleType='secondary' className=' w-32' onClick={resetGame}>
+      <Button
+        styleType='secondary'
+        className='w-32 sm:text-xl'
+        onClick={resetGame}
+      >
         Reset
       </Button>
-      <Button styleType='primary' className='w-32' onClick={resetFull}>
+      <Button
+        styleType='primary'
+        className='w-32 sm:text-xl'
+        onClick={resetFull}
+      >
         Home
       </Button>
     </motion.div>
