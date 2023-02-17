@@ -80,7 +80,7 @@ export default function Board() {
       variants={container}
       initial='hidden'
       animate='visible'
-      className='grid grid-cols-3 gap-3'
+      className='grid grid-cols-3 gap-3 sm:gap-6'
     >
       {board.map((cell, index) => (
         <Cell
