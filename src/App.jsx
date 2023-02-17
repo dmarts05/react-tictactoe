@@ -19,11 +19,11 @@ export default function App() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className='grid h-screen place-content-center'
+      className='grid h-screen place-content-center overflow-hidden'
     >
       {!isGameInProgress && <StartPage />}
       {isGameInProgress && <GamePage />}
-      <ThemeToggle className='fixed right-0 bottom-0 mb-3 mr-3' />
+      <ThemeToggle className='absolute right-0 bottom-0 mb-3 mr-3 sm:mb-6 sm:mr-6' />
     </motion.div>
   );
 }

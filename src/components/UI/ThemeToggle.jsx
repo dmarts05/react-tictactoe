@@ -43,25 +43,18 @@ export default function ThemeToggle({ className: extraClasses }) {
   };
 
   return (
-    <motion.div
-      initial={{ y: 100 }}
-      animate={{ y: 0 }}
-      transition={{ delay: 1.5 }}
+    <Button
+      styleType={'primary'}
+      onClick={toggleThemeHandler}
+      className={`grid h-14 w-14 place-content-center rounded-full shadow-lg sm:h-16 sm:w-16 ${extraClasses}`}
     >
-      <Button
-        styleType={'primary'}
-        onClick={toggleThemeHandler}
-        className={`grid h-14 w-14 place-content-center rounded-full shadow-lg sm:h-16 sm:w-16 ${extraClasses}`}
+      <motion.span
+        key={currentTheme}
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
       >
-        <motion.span
-          key={currentTheme}
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          className=''
-        >
-          {currentTheme === 'dark' ? sunSvg : moonSvg}
-        </motion.span>
-      </Button>
-    </motion.div>
+        {currentTheme === 'dark' ? sunSvg : moonSvg}
+      </motion.span>
+    </Button>
   );
 }
