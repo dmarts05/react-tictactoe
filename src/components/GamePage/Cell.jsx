@@ -4,7 +4,7 @@ import getIsEndGame from '../../logic/getIsEndGame';
 
 // TODO implement variants so animations work properly
 
-export default function Cell({ index, content }) {
+export default function Cell({ index, content, variants }) {
   const board = useGameStore(state => state.board);
   const currentTurn = useGameStore(state => state.currentTurn);
   const isEndGame = useGameStore(state => state.isEndGame);
@@ -13,22 +13,27 @@ export default function Cell({ index, content }) {
   const setCurrentTurn = useGameStore(state => state.setCurrentTurn);
   const setIsEndGame = useGameStore(state => state.setIsEndGame);
 
-  const performMoveHandler = () => {
-    // Check if cell has already been used
-    if (content !== ' ') {
-      return;
-    }
-    // Check if it is AI's turn
-    else if (gamePreferences.gameMode === 'ai' && currentTurn === 'X') {
-      return;
-    }
-    // Check if the game has ended
-    else {
-      for (const key in isEndGame) {
-        if (isEndGame[key]) {
-          return;
-        }
+  const isCellUsed = content !== ' ';
+
+  const isAiTurn = gamePreferences.gameMode === 'ai' && currentTurn === 'X';
+
+  const hasGameEnded = () => {
+    for (const key in isEndGame) {
+      if (isEndGame[key]) {
+        return true;
       }
+    }
+
+    return false;
+  };
+
+  const performMoveHandler = () => {
+    if (isCellUsed) {
+      return;
+    } else if (isAiTurn) {
+      return;
+    } else if (hasGameEnded()) {
+      return;
     }
 
     const newBoard = [...board];
@@ -39,18 +44,25 @@ export default function Cell({ index, content }) {
   };
 
   return (
-    <motion.div
-      initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
-      exit={{ scale: 0 }}
-      whileHover={{ scale: 1.1 }}
-      whileFocus={{ scale: 0.9 }}
-      onClick={performMoveHandler}
-      className='grid h-24 w-24 cursor-pointer select-none place-content-center rounded-2xl border-4 border-zinc-800 text-5xl font-medium dark:border-white'
-    >
-      <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }}>
-        {content}
-      </motion.span>
+    <motion.div variants={variants}>
+      <motion.div
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={performMoveHandler}
+        className={`grid h-24 w-24 cursor-pointer select-none place-content-center rounded-2xl border-4 border-zinc-800 dark:border-white ${
+          (hasGameEnded() || isAiTurn) && 'cursor-not-allowed'
+        }`}
+      >
+        <motion.p
+          key={content}
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          exit={{ scale: 0 }}
+          className='text-5xl font-medium text-zinc-800 dark:text-white'
+        >
+          {content}
+        </motion.p>
+      </motion.div>
     </motion.div>
   );
 }

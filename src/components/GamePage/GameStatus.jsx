@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import useGameStore from '../../store/store';
 
 export default function GameStatus() {
@@ -17,8 +18,23 @@ export default function GameStatus() {
   } else if (isEndGame.isTie) {
     content = "It's a tie!";
   } else {
-    content = `${currentTurn === 'O' ? playerOneName : playerTwoName} turn!`;
+    content = `${currentTurn === 'O' ? playerOneName : playerTwoName}'s turn!`;
   }
 
-  return <p className='text-3xl font-medium'>{content}</p>;
+  return (
+    <motion.div
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{ delay: 1.2 }}
+    >
+      <motion.p
+        key={content}
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        className='text-3xl font-medium'
+      >
+        {content}
+      </motion.p>
+    </motion.div>
+  );
 }

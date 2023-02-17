@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 const INITIAL_BOARD = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
 
-const gameStore = set => ({
+const INITIAL_STATE = {
   board: INITIAL_BOARD,
   currentTurn: 'O',
   gamePreferences: {
@@ -17,6 +17,11 @@ const gameStore = set => ({
     hasPlayerTwoWon: false,
     isTie: false,
   },
+  resetGameCounter: 0,
+};
+
+const gameStore = set => ({
+  ...INITIAL_STATE,
   setBoard: newBoard => {
     set(state => ({
       ...state,
@@ -34,6 +39,21 @@ const gameStore = set => ({
   },
   setIsEndGame: isEnd => {
     set(state => ({ ...state, isEndGame: isEnd }));
+  },
+  resetGame: () => {
+    const { board, currentTurn, isEndGame } = INITIAL_STATE;
+    set(state => {
+      return {
+        ...state,
+        board,
+        currentTurn,
+        isEndGame,
+        resetGameCounter: state.resetGameCounter + 1,
+      };
+    });
+  },
+  resetFull: () => {
+    set(state => ({ ...state, ...INITIAL_STATE }));
   },
 });
 

@@ -13,7 +13,7 @@ export default function StartGameForm({ onCloseModal }) {
     watch,
     formState: { errors },
   } = useForm({
-    mode: 'onChange',
+    mode: 'onTouched',
     defaultValues: {
       gameMode: 'ai',
       difficulty: 'easy',
@@ -25,10 +25,10 @@ export default function StartGameForm({ onCloseModal }) {
 
   useEffect(() => {
     if (gameMode === 'ai') {
-      setValue('playerTwoName', 'AI', { shouldValidate: true });
+      setValue('playerTwoName', 'AI');
       setValue('difficulty', 'easy');
     } else {
-      setValue('playerTwoName', '', { shouldValidate: true });
+      setValue('playerTwoName', '');
       setValue('difficulty', undefined);
     }
   }, [setValue, gameMode]);
@@ -136,7 +136,6 @@ export default function StartGameForm({ onCloseModal }) {
         />
 
         <Button
-          type='button'
           styleType='secondary'
           className='m-auto w-28'
           onClick={onCloseModal}

@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 
 export default function Button({
-  type,
+  type = 'button',
   styleType,
   onClick,
   className: extraClasses,
