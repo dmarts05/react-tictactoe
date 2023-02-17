@@ -134,11 +134,27 @@ const getAiMoveIndex = (board, difficulty) => {
 
   switch (difficulty) {
     case 'easy':
-      return getRandomMoveIndex(extendedInfoBoard);
+      return getRandomMoveIndex();
+    case 'normal': {
+      const BEST_MOVE_CHANCE = 0.65;
+      if (Math.random() <= BEST_MOVE_CHANCE) {
+        return getBestMoveIndex();
+      } else {
+        return getRandomMoveIndex();
+      }
+    }
+    case 'hard': {
+      const BEST_MOVE_CHANCE = 0.85;
+      if (Math.random() <= BEST_MOVE_CHANCE) {
+        return getBestMoveIndex();
+      } else {
+        return getRandomMoveIndex();
+      }
+    }
     case 'impossible':
-      return getBestMoveIndex(extendedInfoBoard);
+      return getBestMoveIndex();
     default:
-      return getRandomMoveIndex(extendedInfoBoard);
+      return getRandomMoveIndex();
   }
 };
 
