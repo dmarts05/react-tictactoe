@@ -76,7 +76,7 @@ export default function StartGameForm({ onCloseModal }) {
                 message: 'Enter a minimum of 2 characters',
               },
               maxLength: {
-                value: 16,
+                value: 12,
                 message: 'Enter no more than 16 characters',
               },
             }}
@@ -103,7 +103,7 @@ export default function StartGameForm({ onCloseModal }) {
                 message: 'Enter a minimum of 2 characters',
               },
               maxLength: {
-                value: 16,
+                value: 12,
                 message: 'Enter no more than 16 characters',
               },
             }}
