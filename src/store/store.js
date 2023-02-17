@@ -16,6 +16,7 @@ const INITIAL_STATE = {
     hasPlayerOneWon: false,
     hasPlayerTwoWon: false,
     isTie: false,
+    winningCombo: [],
   },
   resetGameCounter: 0,
 };

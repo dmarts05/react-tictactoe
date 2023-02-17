@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import useGameStore from '../../store/store';
-import getIsEndGame from '../../logic/getIsEndGame';
+import getIsEndGame from '../../logic/get-is-end-game';
 
 // TODO implement variants so animations work properly
 
@@ -17,9 +17,11 @@ export default function Cell({ index, content, variants }) {
 
   const isAiTurn = gamePreferences.gameMode === 'ai' && currentTurn === 'X';
 
+  const isCellWinningCombo = isEndGame.winningCombo.includes(index);
+
   const hasGameEnded = () => {
     for (const key in isEndGame) {
-      if (isEndGame[key]) {
+      if (key !== 'winningCombo' && isEndGame[key]) {
         return true;
       }
     }
@@ -49,8 +51,10 @@ export default function Cell({ index, content, variants }) {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={performMoveHandler}
-        className={`grid h-24 w-24 cursor-pointer select-none place-content-center rounded-2xl border-4 border-zinc-800 dark:border-white ${
+        className={`grid h-24 w-24 cursor-pointer select-none place-content-center rounded-2xl border-4 border-zinc-800 transition-colors duration-200 dark:border-white ${
           (hasGameEnded() || isAiTurn) && 'cursor-not-allowed'
+        } ${isCellWinningCombo && 'border-yellow-400 dark:border-yellow-400'} ${
+          isEndGame.isTie && 'border-blue-400 dark:border-blue-400'
         }`}
       >
         <motion.p
@@ -58,7 +62,9 @@ export default function Cell({ index, content, variants }) {
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           exit={{ scale: 0 }}
-          className='text-5xl font-medium text-zinc-800 dark:text-white'
+          className={`text-5xl font-medium text-zinc-800 dark:text-white ${
+            isCellWinningCombo && 'text-yellow-400 dark:text-yellow-400'
+          } ${isEndGame.isTie && 'text-blue-400 dark:text-blue-400'}`}
         >
           {content}
         </motion.p>

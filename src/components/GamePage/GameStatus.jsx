@@ -12,11 +12,25 @@ export default function GameStatus() {
   let content;
 
   if (isEndGame.hasPlayerOneWon) {
-    content = `${playerOneName} has won!`;
+    content = (
+      <span>
+        <span className='text-yellow-400'>{playerOneName}</span> has won!
+      </span>
+    );
+    // content = `${playerOneName} has won!`;
   } else if (isEndGame.hasPlayerTwoWon) {
-    content = `${playerTwoName} has won!`;
+    content = (
+      <span>
+        <span className='text-yellow-400'>{playerTwoName}</span> has won!
+      </span>
+    );
   } else if (isEndGame.isTie) {
-    content = "It's a tie!";
+    content = (
+      <span>
+        {"It's a "}
+        <span className='text-blue-400'>tie</span>!
+      </span>
+    );
   } else {
     content = `${currentTurn === 'O' ? playerOneName : playerTwoName}'s turn!`;
   }
