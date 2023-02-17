@@ -1,26 +1,26 @@
 import { motion } from 'framer-motion';
 
+const container = {
+  hidden: { opacity: 1, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.3,
+    },
+  },
+};
+
+const item = {
+  hidden: { scale: 0, rotate: 180 },
+  visible: {
+    scale: 1,
+    rotate: 0,
+  },
+};
+
 export default function Title() {
-  const container = {
-    hidden: { opacity: 1, scale: 0 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.3,
-      },
-    },
-  };
-
-  const item = {
-    hidden: { scale: 0, rotate: 180 },
-    visible: {
-      scale: 1,
-      rotate: 0,
-    },
-  };
-
   return (
     <motion.h1
       variants={container}
