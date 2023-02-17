@@ -18,7 +18,7 @@ const getAiMoveIndex = (board, difficulty) => {
     case 'easy':
       return getRandomMoveIndex(extendedInfoBoard);
     default:
-      break;
+      return getRandomMoveIndex(extendedInfoBoard);
   }
 };
 
