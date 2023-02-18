@@ -4,14 +4,14 @@ The main goal behind this project was to create a visually pleasing Tic Tac Toe 
 
 ## Technologies
 
-<div style='display: grid; place-content: center; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1rem'>
+<div style='display: flex; flex-wrap: wrap; gap: 8px'>
   <img src='./assets/html-logo.png' width=72px>
   <img src='./assets/css-logo.png' width=72px>
   <img src='./assets/js-logo.png' width=72px>
-  <img src='./assets/framer-motion-logo.png' width=72px>
-  <img src='./assets/react-hook-form-logo.png' width=72px; style='transform: scale(0.8)'>
   <img src='./assets/react-logo.png' width=72px>
+  <img src='./assets/react-hook-form-logo.png' width=72px; style='transform: scale(0.7)'>
   <img src='./assets/vite-logo.png' width=72px>
+  <img src='./assets/framer-motion-logo.png' width=72px>
   <img src='./assets/zustand-logo.png' width=72px style='transform: scale(1.5)'>
 </div>
 
