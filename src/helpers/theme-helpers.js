@@ -1,5 +1,5 @@
-export const getCurrentTheme = () =>
-  document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+export const getDefaultOsTheme = () =>
+  window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
 export const setDefaultOsTheme = () => {
   if (window.matchMedia('(prefers-color-scheme: dark)').matches) {

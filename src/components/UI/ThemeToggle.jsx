@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { getCurrentTheme } from '../../helpers/theme-helpers';
+import { getDefaultOsTheme } from '../../helpers/theme-helpers';
 import Button from './Button';
 
 const sunSvg = (
@@ -30,7 +30,7 @@ const moonSvg = (
 );
 
 export default function ThemeToggle({ className: extraClasses }) {
-  const [currentTheme, setCurrentTheme] = useState(getCurrentTheme());
+  const [currentTheme, setCurrentTheme] = useState(getDefaultOsTheme());
 
   const toggleThemeHandler = () => {
     if (currentTheme === 'dark') {
