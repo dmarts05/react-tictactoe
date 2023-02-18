@@ -1,6 +1,6 @@
 # React - Tic Tac Toe
 
-The main goal behind this project was to create a visually pleasing Tic Tac Toe game using React and Tailwind CSS.
+The main goal behind this project was to create a visually pleasing Tic Tac Toe game using React.js and Tailwind CSS.
 
 ## Technologies
 
