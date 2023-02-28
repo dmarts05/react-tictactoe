@@ -25,10 +25,10 @@ export default function StartGameForm({ onCloseModal }) {
 
   useEffect(() => {
     if (gameMode === 'ai') {
-      setValue('playerTwoName', 'AI');
+      setValue('playerTwoName', 'AI', { shouldValidate: true });
       setValue('difficulty', 'easy');
     } else {
-      setValue('playerTwoName', '');
+      setValue('playerTwoName', '', { shouldValidate: true });
       setValue('difficulty', undefined);
     }
   }, [setValue, gameMode]);
@@ -41,7 +41,6 @@ export default function StartGameForm({ onCloseModal }) {
     setGamePreferences(data);
     onCloseModal();
 
-    // TODO: Use AnimatePresence to avoid this
     setTimeout(() => {
       setIsGameInProgress(true);
     }, 300);
